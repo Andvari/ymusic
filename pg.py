@@ -53,11 +53,11 @@ for file in listdir('.'):
     if not isdir(f'{file}'):
         name, ext = splitext(file)
         ext = ext[1:]
-        if ext in ['description', 'jpg', 'webm', 'webp', 'mkv']:
+        if ext in ['description', 'jpg', 'webm', 'webp', 'mkv', 'mp4']:
             if ext == 'jpg':
                 run([f'convert -resize 640x640 "{file}" "{path}/cover.jpg"'], shell=True)
                 pass
-            elif ext in ['webm', 'mkv']:
+            elif ext in ['webm', 'mkv', 'mp4']:
                 track_name = name[:name.find('[')].strip()
                 track_tag = name[name.rfind('[')+1:name.rfind(']')]
 
