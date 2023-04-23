@@ -12,7 +12,9 @@ with open("download.sh", "w") as f:
     url_counter = 0
     while True:
         url = run(['xsel -b'], shell=True, capture_output=True).stdout.decode('utf-8')
-        url = url[:url.find('feature=share')-1]
+        if url.find('feature=share') != -1:
+            url = url[:url.find('feature=share')-1]
+        
         domain = url[8:25]
         if domain != 'music.youtube.com':
             if url_counter != 0:
