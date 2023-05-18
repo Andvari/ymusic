@@ -52,17 +52,33 @@ run([f'mkdir -p "Backup/{path}"'], shell=True)
 for file in listdir('.'):
     if not isdir(f'{file}'):
         name, ext = splitext(file)
+        print(name)
         ext = ext[1:]
         if ext in ['description', 'jpg', 'webm', 'webp', 'mkv', 'mp4']:
             if ext == 'jpg':
                 run([f'convert -resize 640x640 "{file}" "{path}/cover.jpg"'], shell=True)
                 pass
             elif ext in ['webm', 'mkv', 'mp4']:
-                track_name = name[:name.find('[')].strip()
+                print("-------------------------------------")
+                print("-------------------------------------")
+                print("-------------------------------------")
+                print(name)
                 track_tag = name[name.rfind('[')+1:name.rfind(']')]
+                print(track_tag)
 
-                track_num = name[name.find('[')+1:name.find(']')]
+                name = name[:-len(track_tag)-2]
+                print(name)
+                track_num = name[name.rfind('[')+1:name.rfind(']')]
+                print(track_num)
 
+                name = name[:-len(track_num)-2]
+                print(name)
+                track_name= name
+                print(track_name)
+
+                print("--------------------------------------------------------------")
+                print("--------------------------------------------------------------")
+                print("--------------------------------------------------------------")
                 artist = tracks[track_tag][1][0]
                 if len(tracks[track_tag][1]) > 1:
                     artist +=' & ' + tracks[track_tag][1][1]
